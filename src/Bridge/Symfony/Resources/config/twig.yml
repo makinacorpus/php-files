@@ -1,0 +1,7 @@
+services:
+
+    files.twig.extension:
+        public: false
+        class: MakinaCorpus\Files\Bridge\Symfony\Twig\FileManagerExtension
+        arguments: ["@files.file_manager", "@request_stack"]
+        tags: ['twig.extension']

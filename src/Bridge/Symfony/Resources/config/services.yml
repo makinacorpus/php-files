@@ -1,0 +1,33 @@
+parameters:
+
+    env(FILE_PRIVATE_DIR): "%kernel.project_dir%/private"
+    env(FILE_PUBLIC_DIR): "%kernel.project_dir%/public/files"
+    env(FILE_UPLOAD_DIR): "%kernel.project_dir%/var/tmp/upload"
+    env(FILE_WEBROOT_DIR): "%kernel.project_dir%/public"
+
+    files.private_directory: "%env(resolve:FILE_PRIVATE_DIR)%"
+    files.public_directory: "%env(resolve:FILE_PUBLIC_DIR)%"
+    files.upload_directory: "%env(resolve:FILE_UPLOAD_DIR)%"
+    files.webroot_directory: "%env(resolve:FILE_WEBROOT_DIR)%"
+
+    # For backward compatibility.
+    filechunk.private_directory: "%files.private_directory%"
+    filechunk.public_directory: "%files.public_directory%"
+    filechunk.upload_directory: "%files.upload_directory%"
+    filechunk.webroot_directory: "%files.webroot_directory%"
+
+services:
+
+    files.file_manager:
+        public: false
+        class: MakinaCorpus\Files\FileManager
+        arguments:
+            $webroot: "%kernel.project_dir%/public"
+
+    MakinaCorpus\Files\FileManager:
+        public: true
+        alias: files.file_manager
+
+    # For backward compatibility.
+    filechunk.file_manager:
+        alias: files.file_manager

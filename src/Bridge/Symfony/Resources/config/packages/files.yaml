@@ -1,0 +1,8 @@
+files:
+    index:
+        # Allowed values are null or 'goat'.
+        driver: goat
+        driver_options:
+            runner: default
+            table_files: public.file
+            table_attributes: public.file_attribute
