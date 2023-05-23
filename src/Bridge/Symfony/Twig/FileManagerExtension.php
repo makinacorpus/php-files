@@ -64,15 +64,7 @@ final class FileManagerExtension extends AbstractExtension
         }
 
         if ($absolute) {
-            if (\method_exists($this->requestStack, 'getMainRequest')) {
-                // Symfony >= 6.0
-                $request = $this->requestStack->getMainRequest();
-            } else {
-                // Symfony < 6.0
-                $request = $this->requestStack->getMasterRequest();
-            }
-
-            if ($request) {
+            if ($request = $this->requestStack->getMainRequest()) {
                 if ($basePath = $request->getBasePath()) {
                     return $request->getSchemeAndHttpHost().'/'.$basePath.'/'.$relativePath;
                 }
