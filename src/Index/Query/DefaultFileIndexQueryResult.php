@@ -61,7 +61,7 @@ class DefaultFileIndexQueryResult implements FileIndexQueryResult, \IteratorAggr
     /**
      * {@inheritdoc}
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return (fn () => yield from $this->result)();
     }
